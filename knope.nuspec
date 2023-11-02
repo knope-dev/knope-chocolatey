@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+ <id>knope</id>
+   <version>0.13.0</version>
+    <packageSourceUrl>https://github.com/knope-dev/knope-chocolatey</packageSourceUrl>
+    <owners>Dylan Anthony</owners>
+    
+    <title>knope</title>
+    <authors>Dylan Anthony</authors>
+    <projectUrl>https://knope.tech</projectUrl>
+    <!--<iconUrl>http://rawcdn.githack.com/__REPLACE_YOUR_REPO__/master/icons/knope.png</iconUrl>-->
+    <copyright>2023 Dylan Anthony</copyright>
+    <licenseUrl>https://github.com/knope-dev/knope/blob/main/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/knope-dev/knope</projectSourceUrl>
+    <docsUrl>https://knope.tech</docsUrl>
+    <tags>knope</tags>
+    <summary>Automate developer tasks, like generating changelogs and updating versions</summary>
+    <description># Knope
+
+A command line tool that happily completes the tasks which most developers find tedious.
+
+## Example: Automating GitHub Actions Release
+
+Got some conventional commits?
+
+```
+feat: A spicy feature
+fix: Some sauce
+```
+
+And some changesets?
+
+```
+---
+my-package: major
+---
+
+#### Big deal
+
+You probably want to read this before upgrading 💜
+```
+
+Do you want to release this by hand? Knope! Here's a GitHub Actions workflow:
+
+```yaml
+name: Drop a new version
+
+on: workflow_dispatch
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PAT }}
+      - uses: knope-dev/action@v1 # Install Knope
+        with:
+          version: 0.7.4
+      - run: knope release
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+```
+
+You get a GitHub release and a changelog, picking the [semantic version] based on the combination of [conventional commits] and [changesets].
+
+```markdown
+## 2.0.0
+
+### Breaking Changes
+
+#### Big deal
+
+You probably want to read this before upgrading 💜
+
+### Features
+
+#### A spicy feature
+
+### Fixes
+
+#### Some sauce
+```
+</description>
+    <!-- <releaseNotes>__REPLACE_OR_REMOVE__MarkDown_Okay</releaseNotes> -->
+    <!-- =============================== -->
+
+    <!-- Specifying dependencies and version ranges? https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files -->
+    <!--<dependencies>
+      <dependency id="" version="__MINIMUM_VERSION__" />
+      <dependency id="" version="[__EXACT_VERSION__]" />
+      <dependency id="" version="[_MIN_VERSION_INCLUSIVE, MAX_VERSION_INCLUSIVE]" />
+      <dependency id="" version="[_MIN_VERSION_INCLUSIVE, MAX_VERSION_EXCLUSIVE)" />
+      <dependency id="" />
+      <dependency id="chocolatey-core.extension" version="1.1.0" />
+    </dependencies>-->
+    <!-- chocolatey-core.extension - https://community.chocolatey.org/packages/chocolatey-core.extension -->
+
+    <!--<provides>NOT YET IMPLEMENTED</provides>-->
+    <!--<conflicts>NOT YET IMPLEMENTED</conflicts>-->
+    <!--<replaces>NOT YET IMPLEMENTED</replaces>-->
+  </metadata>
+  <files>
+    <!-- this section controls what actually gets packaged into the Chocolatey package -->
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
