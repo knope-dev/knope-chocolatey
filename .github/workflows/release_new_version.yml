@@ -13,12 +13,12 @@ jobs:
       - uses: actions/checkout@v4.1.1
       - name: Download Knope
         env:
-          WINDOWS_ASSET_NAME: knope-x86_64-pc-windows-msvc
+          ASSET_NAME: knope-x86_64-pc-windows-msvc
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download --repo knope-dev/knope v${{ env.KNOPE_VERSION }} --pattern "knope-x86_64-pc-windows-msvc"
-          tar -xzf ${{ env.WINDOWS_ASSET_NAME }}.tgz
-          mv ${{ env.WINDOWS_ASSET_NAME }}/knope.exe tools/knope.exe
+          gh release download --repo knope-dev/knope v${{ env.KNOPE_VERSION }} --pattern "${{ env.ASSET_NAME }}.tgz"
+          tar -xzf ${{ env.ASSET_NAME }}.tgz
+          mv ${{ env.ASSET_NAME }}/knope.exe tools/knope.exe
       - name: Update version in knope.nuspec
         run: sed -i "s#<version>.*</version>#<version>${{ env.KNOPE_VERSION }}</version>#" knope.nuspec
       - run: choco pack
