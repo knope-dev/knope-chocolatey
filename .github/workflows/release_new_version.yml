@@ -1,0 +1,36 @@
+name: Release new version
+on:
+  push:
+    branches:
+      - main
+env:
+  # renovate: datasource=crate depName=knope
+  KNOPE_VERSION: 0.13.2
+jobs:
+  deploy_to_chocolatey:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Download Knope
+        env:
+          WINDOWS_ASSET_NAME: knope-x86_64-pc-windows-msvc
+        run: |
+          gh release download --repo knope-dev/knope v${KNOPE_VERSION} --pattern "knope-x86_64-pc-windows-msvc"
+          tar -xzf ${WINDOWS_ASSET_NAME}.tgz
+          mv ${WINDOWS_ASSET_NAME}/knope.exe tools/knope.exe
+      - name: Update version in knope.nuspec
+        run: sed -i "s#<version>.*</version>#<version>${KNOPE_VERSION}</version>#" knope.nuspec
+      - run: choco pack
+      - name: Push to Chocolatey
+        run: |
+          choco apikey --api-key ${{ secrets.CHOCOLATEY_API_KEY }} -source https://push.chocolatey.org/
+          choco push --source https://push.chocolatey.org/
+      - name: Set up Git
+        run: |
+          git config --global user.name GitHub Actions
+          git config user.email github-actions@github.com
+      - name: Commit back new nuspec file
+        run: |
+          git add knope.nuspec
+          git commit -m "Update knope.nuspec to ${KNOPE_VERSION}"
+          git push

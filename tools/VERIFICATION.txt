@@ -2,5 +2,7 @@
 Verification is intended to assist the Chocolatey moderators and community
 in verifying that this package's contents are trustworthy.
 
-<Include details of how to verify checksum contents>
-<If software vendor, explain that here>
+The binaries distributed via Chocolatey should be identical to the binaries available via GitHub releases.
+Go to https://github.com/knope-dev/knope/releases, select the release with the same version number as the one you are
+installing, and download the `knope-x86_64-pc-windows-msvc.tgz` asset. You can then verify that the binary within
+the archive matches the one distributed by Chocolatey.

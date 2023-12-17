@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
  <id>knope</id>
-   <version>0.13.0</version>
+   <version>0.13.2</version>
     <packageSourceUrl>https://github.com/knope-dev/knope-chocolatey</packageSourceUrl>
     <owners>Dylan Anthony</owners>
     
     <title>knope</title>
     <authors>Dylan Anthony</authors>
     <projectUrl>https://knope.tech</projectUrl>
-    <iconUrl>https://knope.tech/_astro/favicon.01d77bd8_Z5UODr.webp</iconUrl>
+    <iconUrl>https://knope.tech/_astro/favicon.qI3eQnu5_1jGaX9.webp</iconUrl>
     <copyright>2023 Dylan Anthony</copyright>
     <licenseUrl>https://github.com/knope-dev/knope/blob/main/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -86,25 +86,8 @@ You probably want to read this before upgrading 💜
 ```
 </description>
     <releaseNotes>https://github.com/knope-dev/knope/blob/main/CHANGELOG.md</releaseNotes>
-    <!-- =============================== -->
-
-    <!-- Specifying dependencies and version ranges? https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files -->
-    <!--<dependencies>
-      <dependency id="" version="__MINIMUM_VERSION__" />
-      <dependency id="" version="[__EXACT_VERSION__]" />
-      <dependency id="" version="[_MIN_VERSION_INCLUSIVE, MAX_VERSION_INCLUSIVE]" />
-      <dependency id="" version="[_MIN_VERSION_INCLUSIVE, MAX_VERSION_EXCLUSIVE)" />
-      <dependency id="" />
-      <dependency id="chocolatey-core.extension" version="1.1.0" />
-    </dependencies>-->
-    <!-- chocolatey-core.extension - https://community.chocolatey.org/packages/chocolatey-core.extension -->
-
-    <!--<provides>NOT YET IMPLEMENTED</provides>-->
-    <!--<conflicts>NOT YET IMPLEMENTED</conflicts>-->
-    <!--<replaces>NOT YET IMPLEMENTED</replaces>-->
   </metadata>
   <files>
-    <!-- this section controls what actually gets packaged into the Chocolatey package -->
     <file src="tools\**" target="tools" />
   </files>
 </package>
