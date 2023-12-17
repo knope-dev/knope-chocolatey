@@ -14,6 +14,7 @@ jobs:
       - name: Download Knope
         env:
           WINDOWS_ASSET_NAME: knope-x86_64-pc-windows-msvc
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release download --repo knope-dev/knope v${KNOPE_VERSION} --pattern "knope-x86_64-pc-windows-msvc"
           tar -xzf ${WINDOWS_ASSET_NAME}.tgz
