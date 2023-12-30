@@ -1,4 +1,18 @@
 {
-  extends: ["config:base", "regexManagers:githubActionsVersions"],
-  automerge: true
+  extends: ["config:base"],
+  automerge: true,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^.github/(?:workflows|actions)/.+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "KNOPE_VERSION:\\s*(?<currentValue>.*)"
+      ],
+      "depNameTemplate": "knope",
+      "datasourceTemplate": "crate",
+      "versioningTemplate": "semver"
+    }
+  ]
 }
