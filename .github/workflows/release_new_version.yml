@@ -16,7 +16,7 @@ jobs:
           ASSET_NAME: knope-x86_64-pc-windows-msvc
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release download --repo knope-dev/knope v${{ env.KNOPE_VERSION }} --pattern "${{ env.ASSET_NAME }}.tgz"
+          gh release download --repo knope-dev/knope knope/v${{ env.KNOPE_VERSION }} --pattern "${{ env.ASSET_NAME }}.tgz"
           tar -xzf ${{ env.ASSET_NAME }}.tgz
           mv ${{ env.ASSET_NAME }}/knope.exe tools/knope.exe
       - name: Update version in knope.nuspec
