@@ -10,7 +10,7 @@ jobs:
   deploy_to_chocolatey:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.3.0
       - name: Download Knope
         env:
           ASSET_NAME: knope-x86_64-pc-windows-msvc
