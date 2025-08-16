@@ -5,7 +5,7 @@ on:
       - main
 env:
   # renovate: datasource=crate depName=knope
-  KNOPE_VERSION: 0.21.2
+  KNOPE_VERSION: 0.21.3
 jobs:
   deploy_to_chocolatey:
     runs-on: windows-latest
